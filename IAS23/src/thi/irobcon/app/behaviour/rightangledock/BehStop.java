@@ -1,5 +1,6 @@
 package thi.irobcon.app.behaviour.rightangledock;
 
+import thi.irobcon.saphira.desire.DesTransVel;
 import thi.irobcon.saphira.reactive.Behaviour;
 
 public class BehStop extends Behaviour {
@@ -17,6 +18,7 @@ public void fire() {
 	  if ( dist <= stopDistance )
 	  {
 		  System.out.println( "Stop" );
+		  addDesire(new DesTransVel(0, 1.0));
 		  success();
 	  }
 }

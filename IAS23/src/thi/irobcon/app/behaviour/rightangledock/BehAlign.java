@@ -16,14 +16,14 @@ public BehAlign(String behName, int tolerance, int rotVel) {
 }
 
 public void fire() {
-	  int leftDist, rightDist;
+	  int leftDist =0; int rightDist = 0;
 	  Pose relObstaclePose = new Pose();
 
-/*
+
 	  // Mit Sonaren explizit
 	  leftDist = robot.getSonarRange(3);
 	  rightDist = robot.getSonarRange(4); 
-*/
+
 /*
 	  // Mit Kegel
 	  leftDist = (int)  (robot.checkPolar(2, 10, relObstaclePose) - 
@@ -34,7 +34,7 @@ public void fire() {
 		      robot.getRadius()); 
 	
 */
-	  // Mit Box
+/*	  // Mit Box
 	  leftDist = (int)  (robot.checkBox(2500, 500, 100, 100,
 	                     	relObstaclePose) - robot.getRadius());
 
@@ -64,9 +64,9 @@ public void fire() {
 	  double angleLeft = robPose.findAngleTo( absObstaclePose );
 
 	  System.out.println("Validating distance = " + distLeft + " and angle " + angleLeft );
-	  
+*/	  
 	  // Kurskorrektur
-	  System.out.println("Left = " + leftDist + " right = " + rightDist);
+	  System.out.println("Front Left = " + leftDist + " Front Right = " + rightDist);
 
 	  if ( leftDist - rightDist > tolerance)
 	  {

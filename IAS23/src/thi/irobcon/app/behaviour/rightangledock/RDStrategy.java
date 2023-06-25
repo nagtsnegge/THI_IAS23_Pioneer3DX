@@ -5,20 +5,42 @@ import thi.irobcon.saphira.reactive.BehGroup;
 
 public class RDStrategy extends Strategy {
 
-	protected BehGroup dock;
+	protected BehGroup dock, turn;
+	private boolean turned;
 	
-	public RDStrategy(BehGroup dock) {
+	public RDStrategy(BehGroup dock, BehGroup turn) {
 		super();
 		this.dock = dock;
+		this.turn = turn;
 		addOutput("Try to dock ...");
+		turned = false;
 		dock.activateExclusive();
 	}
 
 	public void plan() {
 		if (dock.isSuccess()) {
+			//Found wall one!
 			addOutput("done\nSucceed ... stop");
-			stopRunning();
+			//stopRunning();
+			if (turned){
+				stopRunning();
+			}
+			dock.deactivate();
+			addOutput("Turning....");
+			turn.activateExclusive();
 		}
+		if(turn.isSuccess() && !turned){
+			addOutput("done\nTurned Successfully");
+			turned = true;
+			turn.deactivate();
+			dock.activateExclusive();
+		}
+		/*if(turned == true && dock.isSuccess()){
+			addOutput("Docked and Turned Sucessfully");
+			stopRunning();
+		}*/
+		
+		
 	}
 }
 

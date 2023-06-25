@@ -42,7 +42,7 @@ public void fire() {
 			null);
 	 
     System.out.println("Distance to obstacle in box is " + dist);
-	dist -= robot.getRadius();
+//	dist -= robot.getRadius();
 	
 	if (dist < stopDist) {
 		if (robot.getTransVel() >= 0) {
